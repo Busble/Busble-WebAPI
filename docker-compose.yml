@@ -1,0 +1,40 @@
+version: '3'
+networks:
+    main:
+        driver: bridge
+services:
+  db:
+    image: mariadb:10.4
+    networks:
+      - main
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpw
+      MYSQL_DATABASE: smm
+      MYSQL_USER: smm
+      MYSQL_PASSWORD: smmdevpw
+    volumes:
+      - smmdata:/var/lib/mysql
+
+  redis:
+    image: redis:3.2-alpine
+    networks:
+      - main
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    ports:
+      - 8080:80
+    networks:
+      - main
+    depends_on:
+      - db
+    environment: 
+      PMA_HOST: db
+      MYSQL_USER: smm
+      MYSQL_PASSWORD: smmdevpw
+
+volumes:
+  smmdata:
+      driver: local
