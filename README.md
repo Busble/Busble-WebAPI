@@ -53,10 +53,10 @@ http://localhost:8080
 ``` npx sequelize-cli db:migrate:undo --name 20191030084550-create-user.js ```
 
 วิธีการ run seed data
-``` npx sequelize-cli db:seed --seed 20191030090752-demo-user ```
+``` npx sequelize-cli db:seed --seed 20191030090752-demo-user.js ```
 
 วิธีการ run rollback seed data
-``` npx sequelize-cli db:seed:undo --seed 20191030090752-demo-user ```
+``` npx sequelize-cli db:seed:undo --seed 20191030090752-demo-user.js ```
 
 ``` Commands:
   sequelize db:migrate                        Run pending migrations
@@ -85,6 +85,8 @@ https://sequelize.org/master/manual/models-usage.html#-code-find--code----search
 
 ## todo
 
-หา lib role and ability
-
 หา lib passport javascript
+
+ทำ graphql
+
+ทำ user action, like, post, comment 

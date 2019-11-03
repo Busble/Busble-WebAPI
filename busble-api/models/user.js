@@ -1,12 +1,14 @@
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('users', {
     username: DataTypes.STRING,
+    password: DataTypes.STRING,
     firstname: DataTypes.STRING,
     lastname: DataTypes.STRING,
-    images: DataTypes.STRING,
-    roles: DataTypes.STRING,
+    thumbnail: DataTypes.STRING,
+    gender: DataTypes.STRING,
     status: DataTypes.STRING,
-    image: DataTypes.STRING,
+    telno_verify: DataTypes.BOOLEAN,
+    email_verify: DataTypes.BOOLEAN,
     createdAt: {
       field: 'created_at',
       type: DataTypes.DATE,

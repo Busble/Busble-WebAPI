@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "smm",
-    "password": "smmdevpw",
-    "database": "smm",
-    "host": "127.0.0.1",
+    "username": "busble",
+    "password": "busbledevpw",
+    "database": "busble",
+    "host": "busble_db",
     "dialect": "mariadb",
     "operatorsAliases": false,
     "dialectOptions": {

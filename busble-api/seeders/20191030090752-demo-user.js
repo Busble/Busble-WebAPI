@@ -14,22 +14,26 @@ module.exports = {
     */
     return queryInterface.bulkInsert('users', [
       {
-        username: 'demo',
-        firstname: 'tassanai',
-        lastname: 'singprom',
-        images: null,
-        roles: 'admin',
+        username: 'demo1',
+        password: '123456',
+        firstname: 'firstname_demo1',
+        lastname: 'lastname_demo1',
+        thumbnail: null,
+        gender: 'male',
         status: 'active',
-        image: null
+        telno_verify: false,
+        email_verify: false
       },
       {
         username: 'demo2',
+        password: '123456',
         firstname: 'firstname_demo2',
         lastname: 'lastname_demo2',
-        images: null,
-        roles: 'user',
+        thumbnail: null,
+        gender: 'female',
         status: 'active',
-        image: null
+        telno_verify: false,
+        email_verify: false
       }
     ], {});
   },

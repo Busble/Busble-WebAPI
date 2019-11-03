@@ -3,38 +3,67 @@ networks:
     main:
         driver: bridge
 services:
-  db:
-    image: mariadb:10.4
-    networks:
-      - main
-    ports:
-      - 3306:3306
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpw
-      MYSQL_DATABASE: smm
-      MYSQL_USER: smm
-      MYSQL_PASSWORD: smmdevpw
-    volumes:
-      - smmdata:/var/lib/mysql
+    busble_proxy:
+        image: nginx:alpine
+        networks:
+            main:
+                aliases:
+                    - api.busble-dev.com
+        ports:
+            - 80:80
+            - 443:443
+        volumes:
+            - "./config/proxy.conf:/etc/nginx/conf.d/default.conf"
+            - "./config/ssl:/etc/nginx/ssl"
+        depends_on: 
+            - busble_api
 
-  redis:
-    image: redis:3.2-alpine
-    networks:
-      - main
+    busble_db:
+        container_name: busble_db
+        image: mariadb:10.4
+        networks:
+            - main
+        ports:
+            - 3306:3306
+        environment:
+            MYSQL_ROOT_PASSWORD: rootpw
+            MYSQL_DATABASE: busble
+            MYSQL_USER: busble
+            MYSQL_PASSWORD: busbledevpw
+        volumes:
+            - busbledata:/var/lib/mysql
 
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin:latest
-    ports:
-      - 8080:80
-    networks:
-      - main
-    depends_on:
-      - db
-    environment: 
-      PMA_HOST: db
-      MYSQL_USER: smm
-      MYSQL_PASSWORD: smmdevpw
+    busble_redis:
+        container_name: busble_redis
+        image: redis:3.2-alpine
+        networks:
+            - main
+
+    busble_phpmyadmin:
+        container_name: busble_phpmyadmin
+        image: phpmyadmin/phpmyadmin:latest
+        ports:
+            - 8080:80
+        networks:
+            - main
+        depends_on:
+            - busble_db
+        environment: 
+            PMA_HOST: busble_db
+            MYSQL_USER: busble
+            MYSQL_PASSWORD: busbledevpw
+  
+    busble_api:
+        container_name: busble_api
+        build: 
+            context: ./busble-api
+            dockerfile: busble_api.dockerfile
+        networks: 
+            - main
+        volumes: 
+        - ./busble-api:/usr/src/app
+        - /usr/src/app/node_modules
 
 volumes:
-  smmdata:
-      driver: local
+    busbledata:
+        driver: local
