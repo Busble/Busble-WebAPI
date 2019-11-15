@@ -13,10 +13,13 @@ module.exports = {
         allowNull: false, 
       },
       password: {
+<<<<<<< HEAD:busble-api/migrations/20191030084550-create-user.js
         type: Sequelize.STRING,
         allowNull: false, 
       },
       firstname: {
+=======
+>>>>>>> a0153b56e041318e21f0dfa750e16689c3fa7471:busble-api/migrations/20191030084550-create-user.js
         type: Sequelize.STRING,
         allowNull: false, 
       },
@@ -28,7 +31,11 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
+<<<<<<< HEAD:busble-api/migrations/20191030084550-create-user.js
       avatar: {
+=======
+      gender: {
+>>>>>>> a0153b56e041318e21f0dfa750e16689c3fa7471:busble-api/migrations/20191030084550-create-user.js
         type: Sequelize.STRING,
         allowNull: true,
       },
