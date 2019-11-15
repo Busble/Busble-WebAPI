@@ -12,28 +12,40 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false, 
       },
+      password: {
+        type: Sequelize.STRING,
+        allowNull: false, 
+      },
       firstname: {
         type: Sequelize.STRING,
         allowNull: false, 
       },
-      lastname: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      images: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
-      roles: {
+      firstname: {
         type: Sequelize.STRING,
         allowNull: true, 
       },
-      status: {
+      lastname: {
         type: Sequelize.STRING,
+        allowNull: true,
+      },
+      avatar: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      thumbnail: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      status: {
         allowNull: false,
+        type: Sequelize.STRING,
         defaultValue: 'inactive'
       },
-      image: {
+      telno: {
+        type: Sequelize.STRING,
+        allowNull: true, 
+      },
+      email: {
         type: Sequelize.STRING,
         allowNull: true, 
       },

@@ -2,8 +2,10 @@ version: '3'
 networks:
     main:
         driver: bridge
+
 services:
-  db:
+  busble_db:
+    container_name: busble_db
     image: mariadb:10.4
     networks:
       - main
@@ -11,13 +13,14 @@ services:
       - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: rootpw
-      MYSQL_DATABASE: smm
-      MYSQL_USER: smm
-      MYSQL_PASSWORD: smmdevpw
+      MYSQL_DATABASE: busble
+      MYSQL_USER: busble
+      MYSQL_PASSWORD: busblepw
     volumes:
-      - smmdata:/var/lib/mysql
+      - busbledb:/var/lib/mysql
 
-  redis:
+  busble_redis:
+    container_name: busble_redis
     image: redis:3.2-alpine
     networks:
       - main
@@ -29,12 +32,11 @@ services:
     networks:
       - main
     depends_on:
-      - db
+      - busble_db
     environment: 
-      PMA_HOST: db
-      MYSQL_USER: smm
-      MYSQL_PASSWORD: smmdevpw
+      PMA_HOST: busble_db
+      MYSQL_USER: busble
+      MYSQL_PASSWORD: busblepw
 
 volumes:
-  smmdata:
-      driver: local
+  busbledb:
